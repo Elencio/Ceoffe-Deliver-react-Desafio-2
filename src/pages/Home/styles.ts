@@ -204,6 +204,12 @@ export const ShoppingCoffee = styled.div`
   background: ${(props) => props.theme['purple-dark']};
   color: ${(props) => props.theme.white};
   border-radius: 6px;
+  transition: background 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background: ${(props) => props.theme.purple};
+  }
 `
 
 export const DescriptionCoffee = styled.div`
