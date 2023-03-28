@@ -5,6 +5,10 @@ import {
   ContentHeader,
   InformationContainer,
   InfoDetails,
+  InfoDetailsTitle,
+  IconMapLine,
+  IconTimer,
+  IconDollar,
 } from './styles'
 
 export function Success() {
@@ -17,20 +21,39 @@ export function Success() {
 
       <InformationContainer>
         <InfoDetails>
-          <div>
-            <div>
+          <InfoDetailsTitle>
+            <IconMapLine>
               <MapPin size={24} />
-              <span>Entrega em Rua João Daniel Martinelli, 102Farrapos</span>
-            </div>
+            </IconMapLine>
+
             <div>
-              <Timer />
-              <span>Previsão de entrega 20 min - 30 min </span>
+              <span>
+                Entrega em <strong>Rua João Daniel Martinelli,102</strong>
+                <br />
+              </span>
+              <span> Farrapos-Porto Alegre, R$</span>
             </div>
+          </InfoDetailsTitle>
+          <InfoDetailsTitle>
+            <IconTimer>
+              <Timer size={24} />
+            </IconTimer>
+
             <div>
+              <span>Previsão de entrega </span>
+              <strong>20 min - 30 min </strong>
+            </div>
+          </InfoDetailsTitle>
+          <InfoDetailsTitle>
+            <IconDollar>
               <CurrencyDollar size={24} />
-              <span>Pagamento na entrega Cartão de Crédito</span>
+            </IconDollar>
+
+            <div>
+              <span>Pagamento na entrega </span>
+              <strong>Cartão de Crédito</strong>
             </div>
-          </div>
+          </InfoDetailsTitle>
         </InfoDetails>
 
         <img src={Image} alt="" />

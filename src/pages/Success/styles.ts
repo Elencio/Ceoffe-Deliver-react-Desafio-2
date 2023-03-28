@@ -40,11 +40,47 @@ export const InfoDetails = styled.div`
   flex-direction: column;
   gap: 2rem;
   padding: 2.5rem;
-  border: 1px solid
-    linear-gradient(
-      101deg,
-      rgba(219, 172, 44, 1) 100%,
-      rgba(128, 71, 248, 1) 100%
-    );
+  width: 434px;
+  border: 1px solid #dcf;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 6px 36px;
+`
+export const InfoDetailsTitle = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  strong {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 130%;
+    color: ${(props) => props.theme['base-title']};
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+`
+
+export const IconBase = styled.div`
+  display: flex;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  justify-content: center;
+  border-radius: 1000px;
+  color: ${(props) => props.theme.white};
+`
+export const IconMapLine = styled(IconBase)`
+  background: ${(props) => props.theme.purple};
+`
+export const IconTimer = styled(IconBase)`
+  background: ${(props) => props.theme.yellow};
+`
+export const IconDollar = styled(IconBase)`
+  background: ${(props) => props.theme['yellow-dark']};
 `
