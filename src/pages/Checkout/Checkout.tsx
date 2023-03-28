@@ -9,6 +9,7 @@ import {
   Plus,
   Trash,
 } from 'phosphor-react'
+import { NavLink } from 'react-router-dom'
 import Cofee1 from '../../assets/Coffee1.svg'
 
 import {
@@ -177,7 +178,9 @@ export function Checkout() {
               <strong>R$ 33,20</strong>{' '}
             </div>
           </TotalPrices>
-          <button>Finalizar Pedido</button>
+          <NavLink to="/Success">
+            <button> Finalizar Pedido</button>
+          </NavLink>
         </CheckingOutTheOptions>
       </div>
     </ContainerCheckout>
