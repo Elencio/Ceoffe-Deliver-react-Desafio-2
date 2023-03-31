@@ -27,8 +27,49 @@ import {
   ShoppingCoffee,
   Timercart,
 } from './styles'
+import { useState } from 'react'
+
+interface TypeElementsOfArray {
+  id: number
+  Name: string
+  price: string
+}
+
+const MenuCoffes: TypeElementsOfArray[] = [
+  {
+    id: 1,
+    Name: 'Expresso',
+    price: '9,90',
+  },
+  {
+    id: 2,
+    Name: 'Expresso Cremoso',
+    price: '9,90',
+  },
+  {
+    id: 3,
+    Name: 'Expresso Americ',
+    price: '9,90',
+  },
+]
 
 export function Home() {
+  const [cartItems, setCartItems] = useState<TypeElementsOfArray[]>([])
+
+  function handleAddNewItem(id: number) {
+    const itemToAdd = MenuCoffes.find((item) => item.id === id)
+
+    const Cart = [...cartItems, itemToAdd] as TypeElementsOfArray[]
+
+    setCartItems(Cart)
+  }
+  const numberOfItems: number = cartItems.length
+
+  function handleRemoveItem(id: number) {
+    const newCart = cartItems.filter((item) => item.id !== id)
+    setCartItems(newCart)
+  }
+
   return (
     <div>
       <HeaderContainerHome>
@@ -75,29 +116,31 @@ export function Home() {
       <ContainerMenuHome>
         <strong>Nossos cafés</strong>
         <CoffeeMenuHome>
-          <CoffeeContainer>
-            <img src={Cofee1} alt="" />
-            <h2>Tradicional</h2>
-            <span>Expresso Tradicional</span>
-            <p>O tradicional café feito com água quente e grãos moídos</p>
+          {MenuCoffes.map((item) => (
+            <CoffeeContainer key={item.id}>
+              <img src={Cofee1} alt="" />
+              <h2>Tradicional</h2>
+              <span>{item.Name}</span>
+              <p>O tradicional café feito com água quente e grãos moídos</p>
 
-            <ChooseCoffee>
-              <p>
-                R$
-                <span> 9,90</span>
-              </p>
-              <ButtonsChooseCoffee>
-                <AddandKeepOutCoffee>
-                  <Plus />
-                  <span>1</span>
-                  <Minus />
-                </AddandKeepOutCoffee>
-                <ShoppingCoffee>
-                  <ShoppingCart />
-                </ShoppingCoffee>
-              </ButtonsChooseCoffee>
-            </ChooseCoffee>
-          </CoffeeContainer>
+              <ChooseCoffee>
+                <p>
+                  R$
+                  <span>{item.price}</span>
+                </p>
+                <ButtonsChooseCoffee>
+                  <AddandKeepOutCoffee>
+                    <Plus onClick={() => handleAddNewItem(item.id)} />
+                    <span>{numberOfItems}</span>
+                    <Minus onClick={() => handleRemoveItem(item.id)} />
+                  </AddandKeepOutCoffee>
+                  <ShoppingCoffee>
+                    <ShoppingCart />
+                  </ShoppingCoffee>
+                </ButtonsChooseCoffee>
+              </ChooseCoffee>
+            </CoffeeContainer>
+          ))}
           <CoffeeContainer>
             <img src={Cofee1} alt="" />
             <h2>Tradicional</h2>
