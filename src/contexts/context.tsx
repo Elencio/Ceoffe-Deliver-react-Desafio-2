@@ -1,4 +1,7 @@
 import { ReactNode, createContext, useState } from 'react'
+import { useForm, UseFormRegister, UseFormHandleSubmit } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as zod from 'zod'
 export interface TypeElementsOfArray {
   id: number
   title: string
@@ -16,11 +19,42 @@ type CartItem = {
   quantity: number
 }
 
+type CartProps = {
+  product: TypeElementsOfArray
+}
+
+const DataClientValidation = zod.object({
+  street: zod
+    .string()
+    .min(2, { message: 'Endereço deve ter pelo menos 2 caracteres' }),
+
+  numero: zod.number().min(1).max(2000),
+
+  complement: zod.string().optional(),
+  neighborhood: zod
+    .string()
+    .min(2, { message: 'Bairro deve ter pelo menos 2 caracteres' }),
+  city: zod
+    .string()
+    .min(2, { message: 'Cidade deve ter pelo menos 2 caracteres' }),
+  state: zod
+    .string()
+    .min(2, { message: 'Estado deve ter pelo menos 2 caracteres' }),
+  amount: zod.number().min(1).max(1000),
+})
+
+type CoffeeDataClients = zod.infer<typeof DataClientValidation>
+
 interface ContextCoffeeType {
   addToCart: (product: TypeElementsOfArray) => void
   removeFromCart: (product: TypeElementsOfArray) => void
   totalQuantity: number
   CountNUmbers: (product: TypeElementsOfArray) => number
+  cart: CartItem[]
+  totalAmount: number
+  takeData: (data: CoffeeDataClients) => void
+  handleSubmit: UseFormHandleSubmit<CoffeeDataClients>
+  register: UseFormRegister<CoffeeDataClients>
 }
 
 export const CoffeeContext = createContext({} as ContextCoffeeType)
@@ -39,12 +73,10 @@ export function ContextProvider({ children }: ContextProviderProps) {
       // if product already exists in the cart, increase its quantity
       const updatedCart = [...cart]
       updatedCart[index].quantity += 1
-      setCart(updatedCart)
     } else {
       // if product does not exist in the cart, add it
       const updatedCart = [...cart, { product, quantity: 1 }]
       setCart(updatedCart)
-      console.log(updatedCart)
     }
     setTotalAmount(totalAmount + product.price)
   }
@@ -62,6 +94,25 @@ export function ContextProvider({ children }: ContextProviderProps) {
       setTotalAmount(totalAmount - product.price)
     }
   }
+
+  const { register, handleSubmit, reset } = useForm<CoffeeDataClients>({
+    resolver: zodResolver(DataClientValidation),
+    defaultValues: {
+      amount: 0,
+      city: '',
+      complement: '',
+      neighborhood: '',
+      numero: 0,
+      state: '',
+      street: '',
+    },
+  })
+
+  function takeData(data: CoffeeDataClients) {
+    console.log(data)
+    reset()
+  }
+
   function CountNUmbers(item: TypeElementsOfArray) {
     const itemAdd =
       cart.find((itemCart) => itemCart.product.id === item.id)?.quantity || 0
@@ -79,6 +130,11 @@ export function ContextProvider({ children }: ContextProviderProps) {
         removeFromCart,
         totalQuantity,
         CountNUmbers,
+        cart,
+        totalAmount,
+        register,
+        takeData,
+        handleSubmit,
       }}
     >
       {children}

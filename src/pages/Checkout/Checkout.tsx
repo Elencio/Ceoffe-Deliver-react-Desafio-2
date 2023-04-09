@@ -10,7 +10,6 @@ import {
   Trash,
 } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
-import Cofee1 from '../../assets/Coffee1.svg'
 
 import {
   ContainerCheckout,
@@ -45,8 +44,33 @@ import {
   DeleteCard,
   TotalPrices,
 } from './styles'
+import { useContext, useState } from 'react'
+import { CoffeeContext } from '../../contexts/context'
+
+interface TypeOptionPayment {
+  Option: string
+}
 
 export function Checkout() {
+  const {
+    cart,
+    removeFromCart,
+    addToCart,
+    CountNUmbers,
+    totalAmount,
+    register,
+    takeData,
+    handleSubmit,
+  } = useContext(CoffeeContext)
+  const [selectedOption, setSelectedOption] = useState<TypeOptionPayment>({
+    Option: '',
+  })
+
+  const handleOptionSelect = (option: TypeOptionPayment) => {
+    setSelectedOption(option)
+    console.log(selectedOption)
+  }
+
   return (
     <ContainerCheckout>
       <div>
@@ -64,18 +88,59 @@ export function Checkout() {
               </div>
             </DetailOfLocation>
 
-            <form action="">
-              <Input1 type="text" placeholder="Rua" />
-              <Input2 type="text" placeholder="Número" />
+            <form onSubmit={handleSubmit(takeData)}>
+              <Input1
+                type="text"
+                id="streetInput"
+                placeholder="Endereco"
+                {...register('street')}
+              />
+
+              <Input2
+                type="text"
+                id="numberInput"
+                placeholder="numero"
+                {...register('numero', { valueAsNumber: true })}
+              />
+
               <div>
-                <Input3 type="text" placeholder="Complemento" />
-                <Input4 type="text" placeholder="Bairro" />
+                <Input3
+                  type="text"
+                  placeholder="Complemento"
+                  id="complementInput"
+                  {...register('complement')}
+                />
+
+                <Input4
+                  type="text"
+                  id="neighborhoodInput"
+                  placeholder="neighborhood"
+                  {...register('neighborhood')}
+                />
               </div>
               <div>
-                <Input5 type="text" placeholder="Cidade" />
-                <Input6 type="text" placeholder="Estado" />
-                <Input7 type="text" placeholder="R$" />
+                <Input5
+                  type="text"
+                  placeholder="cidade"
+                  id="cityInput"
+                  {...register('city')}
+                />
+
+                <Input6
+                  type="text"
+                  id="stateInput"
+                  placeholder="estado"
+                  {...register('state')}
+                />
+
+                <Input7
+                  type="text"
+                  id="amountInput"
+                  placeholder="R$"
+                  {...register('amount', { valueAsNumber: true })}
+                />
               </div>
+              <button type="submit">Enviar</button>
             </form>
           </ContainerFormCheckout>
           <ContainerPaymentCardCheckout>
@@ -94,19 +159,27 @@ export function Checkout() {
             </DetailOfPayment>
 
             <ButtonOptions>
-              <ButtonCreditCard>
+              <ButtonCreditCard
+                onClick={() =>
+                  handleOptionSelect({ Option: 'Cartão de crédito' })
+                }
+              >
                 <CardCurrency>
                   <CreditCard />
                 </CardCurrency>
                 <span>Cartão de crédito</span>
               </ButtonCreditCard>
-              <ButtonBank>
+              <ButtonBank
+                onClick={() => handleOptionSelect({ Option: 'Banco' })}
+              >
                 <CardBank>
                   <Bank />
                 </CardBank>
-                <span>Cartão de crédito</span>
+                <span>Banco</span>
               </ButtonBank>
-              <ButtonMoney>
+              <ButtonMoney
+                onClick={() => handleOptionSelect({ Option: 'Dinheiro' })}
+              >
                 <CardMoney>
                   <Money />
                 </CardMoney>
@@ -120,53 +193,35 @@ export function Checkout() {
         <strong>Cafés selecionados</strong>
         <CheckingOutTheOptions>
           <CardCheckingOut>
-            <CardOut>
-              <img src={Cofee1} alt="" />
-              <Options>
-                <strong>Expresso Tradicional</strong>
-                <OptionsCard>
-                  <AddandKeepOut>
-                    <Minus />
-                    <span>1</span>
-                    <Plus />
-                  </AddandKeepOut>
-                  <DeleteCard>
-                    <div>
-                      <Trash />
-                    </div>
-                    <span>Remover</span>
-                  </DeleteCard>
-                </OptionsCard>
-              </Options>
-            </CardOut>
-            <Price>R$ 9,90</Price>
-          </CardCheckingOut>
-          <CardCheckingOut>
-            <CardOut>
-              <img src={Cofee1} alt="" />
-              <Options>
-                <strong>Latte</strong>
-                <OptionsCard>
-                  <AddandKeepOut>
-                    <Minus />
-                    <span>1</span>
-                    <Plus />
-                  </AddandKeepOut>
-                  <DeleteCard>
-                    <div>
-                      <Trash />
-                    </div>
-                    <span>Remover</span>
-                  </DeleteCard>
-                </OptionsCard>
-              </Options>
-            </CardOut>
-            <Price>R$ 9,90</Price>
+            {cart.map((item) => (
+              <>
+                <CardOut key={item.product.id}>
+                  <img src={item.product.image} alt="" />
+                  <Options>
+                    <strong>{item.product.title}</strong>
+                    <OptionsCard>
+                      <AddandKeepOut>
+                        <Minus onClick={() => removeFromCart(item.product)} />
+                        <span>{CountNUmbers(item.product)}</span>
+                        <Plus onClick={() => addToCart(item.product)} />
+                      </AddandKeepOut>
+                      <DeleteCard>
+                        <div>
+                          <Trash />
+                        </div>
+                        <span>Remover</span>
+                      </DeleteCard>
+                    </OptionsCard>
+                  </Options>
+                  <Price>R$ 9,90</Price>
+                </CardOut>
+              </>
+            ))}
           </CardCheckingOut>
           <TotalPrices>
             <div>
               <span>Total de itens</span>
-              <span>R$ 29,70</span>
+              <span>R$ {totalAmount}</span>
             </div>
             <div>
               <span>Entrega</span>

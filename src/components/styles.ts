@@ -33,3 +33,21 @@ export const HeaderContainer = styled.header`
     color: ${(props) => props.theme['purple-dark']};
   }
 `
+
+export const RounedCoffeeCount = styled.div`
+  top: 1.5rem;
+  left: 79rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  background-color: ${(props) => props.theme['yellow-dark']};
+  position: absolute;
+  color: ${(props) => props.theme.white};
+`

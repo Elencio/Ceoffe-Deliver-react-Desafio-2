@@ -218,22 +218,15 @@ export const CheckingOutTheOptions = styled.div`
 
 export const CardCheckingOut = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 3.125rem;
-  margin-bottom: 2rem;
-
-  &::after {
-    content: '';
-    display: flex;
-    position: absolute;
-    margin: 5.5rem 0;
-    width: 368px;
-    height: 0px;
-    border: 1px solid ${(props) => props.theme['base-button']};
-  }
 `
 export const CardOut = styled.div`
   display: flex;
+  flex-direction: row;
   gap: 1.25rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid ${(props) => props.theme['base-button']};
 `
 
 export const AddandKeepOut = styled.div`

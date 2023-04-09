@@ -1,4 +1,4 @@
-import { HeaderContainer } from './styles'
+import { HeaderContainer, RounedCoffeeCount } from './styles'
 import logoCoffee from '../assets/logo-coffee.svg'
 import {
   MapPin,
@@ -15,7 +15,6 @@ export function Header() {
   return (
     <HeaderContainer>
       <img src={logoCoffee} alt="" />
-      <div>{totalQuantity}</div>
       <nav>
         <span>
           <MapPin size={24} />
@@ -24,6 +23,7 @@ export function Header() {
 
         <NavLink to="/checkout">
           <ShoppingCart size={24} />
+          <RounedCoffeeCount>{totalQuantity}</RounedCoffeeCount>
         </NavLink>
       </nav>
     </HeaderContainer>
