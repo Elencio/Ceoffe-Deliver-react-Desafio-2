@@ -28,7 +28,8 @@ import {
   Timercart,
 } from './styles'
 import Imagem1 from '../../assets/Cofee1.svg'
-import { CoffeeContext, MenuCoffes } from '../../contexts/context'
+import { CoffeeContext } from '../../contexts/context'
+import { MenuCoffes } from '../../db/DB'
 
 export function Home() {
   const { removeFromCart, addToCart, CountNUmbers } = useContext(CoffeeContext)

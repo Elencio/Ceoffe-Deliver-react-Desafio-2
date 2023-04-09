@@ -7,11 +7,15 @@ import {
   ShoppingCartSimple,
 } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
+import { useContext } from 'react'
+import { CoffeeContext } from '../contexts/context'
 
 export function Header() {
+  const { totalQuantity } = useContext(CoffeeContext)
   return (
     <HeaderContainer>
       <img src={logoCoffee} alt="" />
+      <div>{totalQuantity}</div>
       <nav>
         <span>
           <MapPin size={24} />
