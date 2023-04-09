@@ -7,6 +7,7 @@ import {
   Timer,
 } from 'phosphor-react'
 import imagem from '../../assets/imagem.svg'
+import { useContext, useState } from 'react'
 import {
   AddandKeepOutCoffee,
   ButtonsChooseCoffee,
@@ -26,10 +27,12 @@ import {
   ShoppingCoffee,
   Timercart,
 } from './styles'
-import { useState } from 'react'
 import Imagem1 from '../../assets/Cofee1.svg'
+import { CoffeeContext, MenuCoffes } from '../../contexts/context'
 
 export function Home() {
+  const { removeFromCart, addToCart, CountNUmbers } = useContext(CoffeeContext)
+
   return (
     <div>
       <HeaderContainerHome>
@@ -77,28 +80,34 @@ export function Home() {
         <strong>Nossos cafés</strong>
 
         <CoffeeMenuHome>
-          <CoffeeContainer>
-            <img src={Imagem1} alt="" />
-            <h2>Tradicional</h2>
-            <span>ADSADFA</span>
-            <p>O tradicional café feito com água quente e grãos moídos</p>
-            <ChooseCoffee>
-              <p>
-                R$
-                <span>EWTER</span>
-              </p>
-              <ButtonsChooseCoffee>
-                <AddandKeepOutCoffee>
-                  <Plus />
-                  <span></span>
-                  <Minus />
-                </AddandKeepOutCoffee>
-                <ShoppingCoffee>
-                  <ShoppingCart />
-                </ShoppingCoffee>
-              </ButtonsChooseCoffee>
-            </ChooseCoffee>
-          </CoffeeContainer>
+          {MenuCoffes.map((item) => (
+            <>
+              <CoffeeContainer key={item.id}>
+                <img src={item.image} alt="" />
+                <h2>{item.type}</h2>
+                <h2>{item.type1}</h2>
+                <h2>{item.type2}</h2>
+                <span>{item.title}</span>
+                <p>{item.description}</p>
+                <ChooseCoffee>
+                  <p>
+                    R$
+                    <span>{item.price}</span>
+                  </p>
+                  <ButtonsChooseCoffee>
+                    <AddandKeepOutCoffee>
+                      <Plus onClick={() => addToCart(item)} />
+                      <span>{CountNUmbers(item)}</span>
+                      <Minus onClick={() => removeFromCart(item)} />
+                    </AddandKeepOutCoffee>
+                    <ShoppingCoffee>
+                      <ShoppingCart />
+                    </ShoppingCoffee>
+                  </ButtonsChooseCoffee>
+                </ChooseCoffee>
+              </CoffeeContainer>
+            </>
+          ))}
         </CoffeeMenuHome>
       </ContainerMenuHome>
     </div>
