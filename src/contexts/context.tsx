@@ -1,29 +1,18 @@
-import React, { ReactNode, createContext, useState } from 'react'
-import { useForm, UseFormRegister, UseFormHandleSubmit } from 'react-hook-form'
+import { createContext, useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
-export interface TypeElementsOfArray {
-  id: number
-  title: string
-  price: number
-  image: string
-  description: string
-  type: string[]
-  type1?: string[]
-  type2?: string[]
-  quantity: number
-}
+import {
+  TypeElementsOfArray,
+  ContextCoffeeType,
+  TypeOptionPayment,
+  ContextProviderProps,
+} from './interfaces'
+import { CartItem, CoffeeDataClients } from '../@types/context'
 
-type CartItem = {
-  product: TypeElementsOfArray
-  quantity: number
-}
+export const CoffeeContext = createContext({} as ContextCoffeeType)
 
-type CartProps = {
-  product: TypeElementsOfArray
-}
-
-const DataClientValidation = zod.object({
+export const DataClientValidation = zod.object({
   street: zod
     .string()
     .min(2, { message: 'Endereço deve ter pelo menos 2 caracteres' }),
@@ -42,38 +31,43 @@ const DataClientValidation = zod.object({
     .min(2, { message: 'Estado deve ter pelo menos 2 caracteres' }),
   amount: zod.number().min(1).max(1000),
 })
-interface TypeOptionPayment {
-  Option: string
-}
-
-type CoffeeDataClients = zod.infer<typeof DataClientValidation>
-
-interface ContextCoffeeType {
-  addToCart: (product: TypeElementsOfArray) => void
-  removeFromCart: (product: TypeElementsOfArray) => void
-  totalQuantity: number
-  CountNUmbers: (product: TypeElementsOfArray) => number
-  cart: CartItem[]
-  totalAmount: number
-  takeData: (data: CoffeeDataClients) => void
-  handleSubmit: UseFormHandleSubmit<CoffeeDataClients>
-  register: UseFormRegister<CoffeeDataClients>
-  formData: CoffeeDataClients // add the type here
-  setFormData: React.Dispatch<React.SetStateAction<CoffeeDataClients>>
-  selectedOption: TypeOptionPayment
-  setSelectedOption: React.Dispatch<React.SetStateAction<TypeOptionPayment>>
-  handleOptionSelect: (option: TypeOptionPayment) => void
-}
-
-export const CoffeeContext = createContext({} as ContextCoffeeType)
-
-interface ContextProviderProps {
-  children: ReactNode
-}
 
 export function ContextProvider({ children }: ContextProviderProps) {
   const [cart, setCart] = useState<CartItem[]>([])
   const [totalAmount, setTotalAmount] = useState<number>(0)
+  const { register, handleSubmit, reset } = useForm<CoffeeDataClients>({
+    resolver: zodResolver(DataClientValidation),
+    defaultValues: {
+      amount: 0,
+      city: '',
+      complement: '',
+      neighborhood: '',
+      numero: 0,
+      state: '',
+      street: '',
+    },
+  })
+
+  const [formData, setFormData] = useState<CoffeeDataClients>({
+    street: '',
+    numero: 0,
+    complement: '',
+    neighborhood: '',
+    city: '',
+    state: '',
+    amount: 0,
+  })
+
+  const [selectedOption, setSelectedOption] = useState<TypeOptionPayment>({
+    Option: '',
+  })
+
+  const handleOptionSelect = (option: TypeOptionPayment) => {
+    setSelectedOption(option)
+  }
+
+  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0)
+  console.log(totalQuantity)
 
   const addToCart = (product: TypeElementsOfArray) => {
     const index = cart.findIndex((item) => item.product.id === product.id)
@@ -103,37 +97,6 @@ export function ContextProvider({ children }: ContextProviderProps) {
     }
   }
 
-  const [selectedOption, setSelectedOption] = useState<TypeOptionPayment>({
-    Option: '',
-  })
-
-  const handleOptionSelect = (option: TypeOptionPayment) => {
-    setSelectedOption(option)
-  }
-
-  const { register, handleSubmit, reset } = useForm<CoffeeDataClients>({
-    resolver: zodResolver(DataClientValidation),
-    defaultValues: {
-      amount: 0,
-      city: '',
-      complement: '',
-      neighborhood: '',
-      numero: 0,
-      state: '',
-      street: '',
-    },
-  })
-
-  const [formData, setFormData] = useState<CoffeeDataClients>({
-    street: '',
-    numero: 0,
-    complement: '',
-    neighborhood: '',
-    city: '',
-    state: '',
-    amount: 0,
-  })
-
   function takeData(data: CoffeeDataClients) {
     setFormData(data)
     reset()
@@ -145,9 +108,6 @@ export function ContextProvider({ children }: ContextProviderProps) {
 
     return itemAdd
   }
-
-  const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0)
-  console.log(totalQuantity)
 
   return (
     <CoffeeContext.Provider

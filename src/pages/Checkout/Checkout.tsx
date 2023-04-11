@@ -44,7 +44,7 @@ import {
   DeleteCard,
   TotalPrices,
 } from './styles'
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { CoffeeContext } from '../../contexts/context'
 
 export function Checkout() {
@@ -77,7 +77,7 @@ export function Checkout() {
               </div>
             </DetailOfLocation>
 
-            <form onSubmit={handleSubmit(takeData)}>
+            <form onSubmit={handleSubmit(takeData)} id="form_Data">
               <Input1
                 type="text"
                 id="streetInput"
@@ -129,7 +129,6 @@ export function Checkout() {
                   {...register('amount', { valueAsNumber: true })}
                 />
               </div>
-              <button type="submit">Enviar</button>
             </form>
           </ContainerFormCheckout>
           <ContainerPaymentCardCheckout>
@@ -223,7 +222,7 @@ export function Checkout() {
             </div>
           </TotalPrices>
           <NavLink to="/Success">
-            <button> Finalizar Pedido</button>
+            <button form='form_Data"'> Finalizar Pedido</button>
           </NavLink>
         </CheckingOutTheOptions>
       </div>
