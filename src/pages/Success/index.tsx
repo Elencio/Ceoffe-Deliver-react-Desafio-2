@@ -10,8 +10,12 @@ import {
   IconTimer,
   IconDollar,
 } from './styles'
+import { useContext } from 'react'
+import { CoffeeContext } from '../../contexts/context'
 
 export function Success() {
+  const { formData, selectedOption } = useContext(CoffeeContext)
+
   return (
     <ContainerSuccessPayment>
       <ContentHeader>
@@ -28,10 +32,16 @@ export function Success() {
 
             <div>
               <span>
-                Entrega em <strong>Rua João Daniel Martinelli,102</strong>
+                Entrega em{' '}
+                <strong>
+                  {formData.street},{formData.numero}
+                </strong>
                 <br />
               </span>
-              <span> Farrapos-Porto Alegre, R$</span>
+              <span>
+                {' '}
+                {formData.city}, {formData.amount}
+              </span>
             </div>
           </InfoDetailsTitle>
           <InfoDetailsTitle>
@@ -51,7 +61,7 @@ export function Success() {
 
             <div>
               <span>Pagamento na entrega </span>
-              <strong>Cartão de Crédito</strong>
+              <strong>{selectedOption.Option}</strong>
             </div>
           </InfoDetailsTitle>
         </InfoDetails>

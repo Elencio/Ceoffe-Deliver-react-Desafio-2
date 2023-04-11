@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useState } from 'react'
+import React, { ReactNode, createContext, useState } from 'react'
 import { useForm, UseFormRegister, UseFormHandleSubmit } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
@@ -42,6 +42,9 @@ const DataClientValidation = zod.object({
     .min(2, { message: 'Estado deve ter pelo menos 2 caracteres' }),
   amount: zod.number().min(1).max(1000),
 })
+interface TypeOptionPayment {
+  Option: string
+}
 
 type CoffeeDataClients = zod.infer<typeof DataClientValidation>
 
@@ -55,6 +58,11 @@ interface ContextCoffeeType {
   takeData: (data: CoffeeDataClients) => void
   handleSubmit: UseFormHandleSubmit<CoffeeDataClients>
   register: UseFormRegister<CoffeeDataClients>
+  formData: CoffeeDataClients // add the type here
+  setFormData: React.Dispatch<React.SetStateAction<CoffeeDataClients>>
+  selectedOption: TypeOptionPayment
+  setSelectedOption: React.Dispatch<React.SetStateAction<TypeOptionPayment>>
+  handleOptionSelect: (option: TypeOptionPayment) => void
 }
 
 export const CoffeeContext = createContext({} as ContextCoffeeType)
@@ -95,6 +103,14 @@ export function ContextProvider({ children }: ContextProviderProps) {
     }
   }
 
+  const [selectedOption, setSelectedOption] = useState<TypeOptionPayment>({
+    Option: '',
+  })
+
+  const handleOptionSelect = (option: TypeOptionPayment) => {
+    setSelectedOption(option)
+  }
+
   const { register, handleSubmit, reset } = useForm<CoffeeDataClients>({
     resolver: zodResolver(DataClientValidation),
     defaultValues: {
@@ -108,8 +124,18 @@ export function ContextProvider({ children }: ContextProviderProps) {
     },
   })
 
+  const [formData, setFormData] = useState<CoffeeDataClients>({
+    street: '',
+    numero: 0,
+    complement: '',
+    neighborhood: '',
+    city: '',
+    state: '',
+    amount: 0,
+  })
+
   function takeData(data: CoffeeDataClients) {
-    console.log(data)
+    setFormData(data)
     reset()
   }
 
@@ -135,6 +161,11 @@ export function ContextProvider({ children }: ContextProviderProps) {
         register,
         takeData,
         handleSubmit,
+        formData,
+        setFormData,
+        handleOptionSelect,
+        selectedOption,
+        setSelectedOption,
       }}
     >
       {children}

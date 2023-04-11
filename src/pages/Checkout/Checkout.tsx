@@ -47,10 +47,6 @@ import {
 import { useContext, useState } from 'react'
 import { CoffeeContext } from '../../contexts/context'
 
-interface TypeOptionPayment {
-  Option: string
-}
-
 export function Checkout() {
   const {
     cart,
@@ -61,15 +57,8 @@ export function Checkout() {
     register,
     takeData,
     handleSubmit,
+    handleOptionSelect,
   } = useContext(CoffeeContext)
-  const [selectedOption, setSelectedOption] = useState<TypeOptionPayment>({
-    Option: '',
-  })
-
-  const handleOptionSelect = (option: TypeOptionPayment) => {
-    setSelectedOption(option)
-    console.log(selectedOption)
-  }
 
   return (
     <ContainerCheckout>
