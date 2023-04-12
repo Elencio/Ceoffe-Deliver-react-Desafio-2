@@ -38,11 +38,11 @@ export function ContextProvider({ children }: ContextProviderProps) {
   const { register, handleSubmit, reset } = useForm<CoffeeDataClients>({
     resolver: zodResolver(DataClientValidation),
     defaultValues: {
-      amount: 0,
+      amount: '',
       city: '',
       complement: '',
       neighborhood: '',
-      numero: 0,
+      numero: '',
       state: '',
       street: '',
     },
@@ -50,12 +50,12 @@ export function ContextProvider({ children }: ContextProviderProps) {
 
   const [formData, setFormData] = useState<CoffeeDataClients>({
     street: '',
-    numero: 0,
+    numero: '',
     complement: '',
     neighborhood: '',
     city: '',
     state: '',
-    amount: 0,
+    amount: '',
   })
 
   const [selectedOption, setSelectedOption] = useState<TypeOptionPayment>({

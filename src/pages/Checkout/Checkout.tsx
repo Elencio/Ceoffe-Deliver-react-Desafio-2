@@ -81,21 +81,21 @@ export function Checkout() {
               <Input1
                 type="text"
                 id="streetInput"
-                placeholder="Endereco"
+                placeholder="CEP"
                 {...register('street')}
               />
 
               <Input2
                 type="text"
                 id="numberInput"
-                placeholder="numero"
+                placeholder="Rua"
                 {...register('numero', { valueAsNumber: true })}
               />
 
               <div>
                 <Input3
                   type="text"
-                  placeholder="Complemento"
+                  placeholder="Numero"
                   id="complementInput"
                   {...register('complement')}
                 />
@@ -103,14 +103,14 @@ export function Checkout() {
                 <Input4
                   type="text"
                   id="neighborhoodInput"
-                  placeholder="neighborhood"
+                  placeholder="Complemento"
                   {...register('neighborhood')}
                 />
               </div>
               <div>
                 <Input5
                   type="text"
-                  placeholder="cidade"
+                  placeholder="Bairro"
                   id="cityInput"
                   {...register('city')}
                 />
@@ -118,15 +118,15 @@ export function Checkout() {
                 <Input6
                   type="text"
                   id="stateInput"
-                  placeholder="estado"
+                  placeholder="cidade"
                   {...register('state')}
                 />
 
                 <Input7
                   type="text"
                   id="amountInput"
-                  placeholder="R$"
-                  {...register('amount', { valueAsNumber: true })}
+                  placeholder="UF"
+                  {...register('amount')}
                 />
               </div>
             </form>
@@ -222,7 +222,9 @@ export function Checkout() {
             </div>
           </TotalPrices>
           <NavLink to="/Success">
-            <button form='form_Data"'> Finalizar Pedido</button>
+            <button type="submit" form="form_Data">
+              Finalizar Pedido
+            </button>
           </NavLink>
         </CheckingOutTheOptions>
       </div>
