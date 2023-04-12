@@ -185,34 +185,34 @@ export const CheckingOutTheOptions = styled.div`
   gap: 24px;
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px 44px;
+`
 
-  button {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 8px;
-    gap: 4px;
-    width: 368px;
-    height: 46px;
-    background: ${(props) => props.theme.yellow};
-    border-radius: 6px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 160%;
-    text-transform: uppercase;
-    color: ${(props) => props.theme.white};
-    font-stretch: 100;
-    border: none;
-    transition: background 0.2s;
-    cursor: pointer;
+export const ButtonComponent = styled.button`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 8px;
+  gap: 4px;
+  width: 368px;
+  height: 46px;
+  background: ${(props) => props.theme.yellow};
+  border-radius: 6px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 160%;
+  text-transform: uppercase;
+  color: ${(props) => props.theme.white};
+  font-stretch: 100;
+  border: none;
+  transition: background 0.2s;
+  cursor: pointer;
 
-    &:hover {
-      background: ${(props) => props.theme['yellow-dark']};
-    }
+  &:hover {
+    background: ${(props) => props.theme['yellow-dark']};
   }
 `
 

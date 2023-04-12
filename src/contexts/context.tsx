@@ -13,23 +13,18 @@ import { CartItem, CoffeeDataClients } from '../@types/context'
 export const CoffeeContext = createContext({} as ContextCoffeeType)
 
 export const DataClientValidation = zod.object({
-  street: zod
-    .string()
-    .min(2, { message: 'Endereço deve ter pelo menos 2 caracteres' }),
+  CEP: zod.string().min(8),
+  Rua: zod.string().min(3).max(2000),
 
   numero: zod.number().min(1).max(2000),
-
-  complement: zod.string().optional(),
-  neighborhood: zod
+  complemento: zod
     .string()
     .min(2, { message: 'Bairro deve ter pelo menos 2 caracteres' }),
-  city: zod
+  Bairro: zod
     .string()
     .min(2, { message: 'Cidade deve ter pelo menos 2 caracteres' }),
-  state: zod
-    .string()
-    .min(2, { message: 'Estado deve ter pelo menos 2 caracteres' }),
-  amount: zod.number().min(1).max(1000),
+  cidade: zod.string().nonempty('Coloca o nome da sua cidade'),
+  UF: zod.string().min(1).max(1000).nonempty('informe a UF'),
 })
 
 export function ContextProvider({ children }: ContextProviderProps) {
@@ -38,24 +33,24 @@ export function ContextProvider({ children }: ContextProviderProps) {
   const { register, handleSubmit, reset } = useForm<CoffeeDataClients>({
     resolver: zodResolver(DataClientValidation),
     defaultValues: {
-      amount: '',
-      city: '',
-      complement: '',
-      neighborhood: '',
-      numero: '',
-      state: '',
-      street: '',
+      Bairro: '',
+      CEP: '',
+      cidade: '',
+      complemento: '',
+      numero: 0,
+      Rua: '',
+      UF: '',
     },
   })
 
   const [formData, setFormData] = useState<CoffeeDataClients>({
-    street: '',
-    numero: '',
-    complement: '',
-    neighborhood: '',
-    city: '',
-    state: '',
-    amount: '',
+    Bairro: '',
+    CEP: '',
+    cidade: '',
+    complemento: '',
+    numero: 0,
+    Rua: '',
+    UF: '',
   })
 
   const [selectedOption, setSelectedOption] = useState<TypeOptionPayment>({
@@ -80,7 +75,8 @@ export function ContextProvider({ children }: ContextProviderProps) {
       const updatedCart = [...cart, { product, quantity: 1 }]
       setCart(updatedCart)
     }
-    setTotalAmount(totalAmount + product.price)
+    const totalPrice = Math.round(totalAmount + product.price)
+    setTotalAmount(totalPrice)
   }
 
   const removeFromCart = (product: TypeElementsOfArray) => {

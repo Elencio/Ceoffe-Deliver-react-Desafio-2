@@ -43,6 +43,7 @@ import {
   Options,
   DeleteCard,
   TotalPrices,
+  ButtonComponent,
 } from './styles'
 import { useContext } from 'react'
 import { CoffeeContext } from '../../contexts/context'
@@ -56,9 +57,20 @@ export function Checkout() {
     totalAmount,
     register,
     takeData,
+    formData,
     handleSubmit,
     handleOptionSelect,
   } = useContext(CoffeeContext)
+
+  let deliverAdd = 3.5
+
+  if (totalAmount === 0) {
+    deliverAdd = 0
+  } else {
+    deliverAdd = 3.5
+  }
+
+  const totalAmountToPaying = totalAmount + deliverAdd
 
   return (
     <ContainerCheckout>
@@ -77,34 +89,34 @@ export function Checkout() {
               </div>
             </DetailOfLocation>
 
-            <form onSubmit={handleSubmit(takeData)} id="form_Data">
+            <form onSubmit={handleSubmit(takeData)} id="formData">
               <Input1
                 type="text"
                 id="streetInput"
                 placeholder="CEP"
-                {...register('street')}
+                {...register('CEP')}
               />
 
               <Input2
                 type="text"
-                id="numberInput"
+                id="Rua"
                 placeholder="Rua"
-                {...register('numero', { valueAsNumber: true })}
+                {...register('Rua')}
               />
 
               <div>
                 <Input3
                   type="text"
                   placeholder="Numero"
-                  id="complementInput"
-                  {...register('complement')}
+                  id="numero"
+                  {...register('numero', { valueAsNumber: true })}
                 />
 
                 <Input4
                   type="text"
                   id="neighborhoodInput"
                   placeholder="Complemento"
-                  {...register('neighborhood')}
+                  {...register('complemento')}
                 />
               </div>
               <div>
@@ -112,21 +124,21 @@ export function Checkout() {
                   type="text"
                   placeholder="Bairro"
                   id="cityInput"
-                  {...register('city')}
+                  {...register('Bairro')}
                 />
 
                 <Input6
                   type="text"
                   id="stateInput"
                   placeholder="cidade"
-                  {...register('state')}
+                  {...register('cidade')}
                 />
 
                 <Input7
                   type="text"
                   id="amountInput"
                   placeholder="UF"
-                  {...register('amount')}
+                  {...register('UF')}
                 />
               </div>
             </form>
@@ -213,18 +225,18 @@ export function Checkout() {
             </div>
             <div>
               <span>Entrega</span>
-              <span>R$ 3,50</span>{' '}
+              <span>R$ {deliverAdd}</span>{' '}
             </div>
             <div>
               {' '}
               <strong>Total </strong>
-              <strong>R$ 33,20</strong>{' '}
+              <strong>R$ {totalAmountToPaying}</strong>{' '}
             </div>
           </TotalPrices>
           <NavLink to="/Success">
-            <button type="submit" form="form_Data">
+            <ButtonComponent type="submit" form="formData">
               Finalizar Pedido
-            </button>
+            </ButtonComponent>
           </NavLink>
         </CheckingOutTheOptions>
       </div>

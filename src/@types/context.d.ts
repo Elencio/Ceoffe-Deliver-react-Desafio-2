@@ -1,5 +1,6 @@
+import { DataClientValidation } from '../contexts/context'
 import { TypeElementsOfArray } from './interfaces'
-import { DataClientValidation } from '../contexts/interfaces'
+
 import * as zod from 'zod'
 
 export type CartItem = {
