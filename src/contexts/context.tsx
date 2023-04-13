@@ -67,11 +67,9 @@ export function ContextProvider({ children }: ContextProviderProps) {
   const addToCart = (product: TypeElementsOfArray) => {
     const index = cart.findIndex((item) => item.product.id === product.id)
     if (index !== -1) {
-      // if product already exists in the cart, increase its quantity
       const updatedCart = [...cart]
       updatedCart[index].quantity += 1
     } else {
-      // if product does not exist in the cart, add it
       const updatedCart = [...cart, { product, quantity: 1 }]
       setCart(updatedCart)
     }
