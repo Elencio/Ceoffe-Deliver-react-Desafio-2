@@ -189,12 +189,7 @@ export const CheckingOutTheOptions = styled.div`
 
 export const ButtonComponent = styled.button`
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   padding: 12px 8px;
-  gap: 4px;
   width: 368px;
   height: 46px;
   background: ${(props) => props.theme.yellow};
@@ -210,6 +205,7 @@ export const ButtonComponent = styled.button`
   border: none;
   transition: background 0.2s;
   cursor: pointer;
+  text-decoration: none;
 
   &:hover {
     background: ${(props) => props.theme['yellow-dark']};

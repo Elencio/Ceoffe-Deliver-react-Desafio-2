@@ -34,13 +34,13 @@ export function Success() {
               <span>
                 Entrega em{' '}
                 <strong>
-                  {formData.street},{formData.numero}
+                  {formData.Bairro},{formData.numero}
                 </strong>
                 <br />
               </span>
               <span>
                 {' '}
-                {formData.city}, {formData.amount}
+                {formData.cidade}, {formData.UF}
               </span>
             </div>
           </InfoDetailsTitle>

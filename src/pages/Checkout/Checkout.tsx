@@ -10,7 +10,7 @@ import {
   Trash,
 } from 'phosphor-react'
 import { NavLink } from 'react-router-dom'
-
+import { useContext } from 'react'
 import {
   ContainerCheckout,
   ButtonOptions,
@@ -45,7 +45,6 @@ import {
   TotalPrices,
   ButtonComponent,
 } from './styles'
-import { useContext } from 'react'
 import { CoffeeContext } from '../../contexts/context'
 
 export function Checkout() {
