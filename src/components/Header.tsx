@@ -1,12 +1,7 @@
 import { HeaderContainer, RounedCoffeeCount } from './styles'
 import logoCoffee from '../assets/logo-coffee.svg'
-import {
-  MapPin,
-  MegaphoneSimple,
-  ShoppingCart,
-  ShoppingCartSimple,
-} from 'phosphor-react'
-import { NavLink } from 'react-router-dom'
+import { MapPin, ShoppingCart } from 'phosphor-react'
+import { Link, NavLink } from 'react-router-dom'
 import { useContext } from 'react'
 import { CoffeeContext } from '../contexts/context'
 
@@ -22,7 +17,7 @@ export function Header() {
         </span>
 
         <NavLink to="/checkout">
-          <ShoppingCart size={24} />
+          <ShoppingCart size={24} weight="fill" />
           {totalQuantity > 0 && (
             <RounedCoffeeCount>{totalQuantity}</RounedCoffeeCount>
           )}

@@ -32,6 +32,7 @@ export interface ContextCoffeeType {
   setSelectedOption: React.Dispatch<React.SetStateAction<TypeOptionPayment>>
   handleOptionSelect: (option: TypeOptionPayment) => void
   JustToResetTheForm: () => void
+  removeCart: (product: number) => void
 }
 
 export interface ContextProviderProps {
