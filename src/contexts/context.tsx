@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react'
+import { createContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
@@ -61,6 +61,11 @@ export function ContextProvider({ children }: ContextProviderProps) {
     setSelectedOption(option)
   }
 
+  useEffect(() => {
+    const stateJSON = JSON.stringify(cart)
+    localStorage.setItem('@CoffeeDeliver', stateJSON)
+  }, [cart])
+
   const totalQuantity = cart.reduce((total, item) => total + item.quantity, 0)
   console.log(totalQuantity)
 
@@ -73,8 +78,9 @@ export function ContextProvider({ children }: ContextProviderProps) {
       const updatedCart = [...cart, { product, quantity: 1 }]
       setCart(updatedCart)
     }
-    const totalPrice = Math.round(totalAmount + product.price)
-    setTotalAmount(totalPrice)
+    const totalPrice = totalAmount + product.price
+    const totalPriceToPay = parseFloat(totalPrice.toFixed(3))
+    setTotalAmount(totalPriceToPay)
   }
 
   const removeFromCart = (product: TypeElementsOfArray) => {
@@ -88,6 +94,20 @@ export function ContextProvider({ children }: ContextProviderProps) {
       setCart(updatedCart)
       console.log(updatedCart)
       setTotalAmount(totalAmount - product.price)
+    }
+  }
+
+  const removeCart = (productId: number) => {
+    const updatedCart = cart.filter((item) => item.product.id !== productId)
+    const removedItems = cart.filter((item) => item.product.id === productId)
+    if (removedItems.length > 0) {
+      const removedTotal = removedItems.reduce(
+        (total, item) => total + item.product.price * item.quantity,
+        0,
+      )
+      const updatedCart = cart.filter((item) => item.product.id !== productId)
+      setTotalAmount(totalAmount - removedTotal)
+      setCart(updatedCart)
     }
   }
 
@@ -126,6 +146,7 @@ export function ContextProvider({ children }: ContextProviderProps) {
         selectedOption,
         setSelectedOption,
         JustToResetTheForm,
+        removeCart,
       }}
     >
       {children}

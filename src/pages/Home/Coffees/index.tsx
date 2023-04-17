@@ -11,7 +11,7 @@ import {
   ShoppingCoffee,
 } from './styles'
 import { MenuCoffes } from '../../../db/DB'
-import { Minus, Plus, ShoppingCart } from 'phosphor-react'
+import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
 
 export function Coffee() {
   const { removeFromCart, addToCart, CountNUmbers } = useContext(CoffeeContext)
@@ -45,7 +45,7 @@ export function Coffee() {
                     <Minus onClick={() => removeFromCart(item)} />
                   </AddandKeepOutCoffee>
                   <ShoppingCoffee>
-                    <ShoppingCart />
+                    <ShoppingCartSimple size={24} weight="fill" />
                   </ShoppingCoffee>
                 </ButtonsChooseCoffee>
               </ChooseCoffee>

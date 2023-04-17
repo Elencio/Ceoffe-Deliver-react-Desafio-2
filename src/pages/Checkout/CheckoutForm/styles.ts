@@ -13,15 +13,28 @@ export const CheckingOutTheOptions = styled.div`
 export const CardCheckingOut = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 3.125rem;
+  align-items: center;
+  gap: 3rem;
 `
 
 export const CardOut = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 1.25rem;
-  padding-bottom: 1.5rem;
+  width: 368px;
+  height: 80px;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding-bottom: 3rem;
   border-bottom: 1px solid ${(props) => props.theme['base-button']};
+`
+export const Card = styled.div`
+  display: flex;
+  gap: 1.125rem;
+  align-items: center;
+  width: 255px;
+  height: 64px;
 `
 
 export const AddandKeepOut = styled.div`
@@ -154,5 +167,6 @@ export const Price = styled.div`
   font-size: 16px;
   line-height: 130%;
   display: flex;
+  margin-top: -2rem;
   color: ${(props) => props.theme['base-text']};
 `

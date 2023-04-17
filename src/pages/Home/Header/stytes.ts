@@ -4,7 +4,7 @@ export const HeaderContainerHome = styled.div`
   padding: 4.5rem 0;
   display: flex;
   gap: 5rem;
-  filter: blur();
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `
 
 export const HeaderContentHome = styled.div`

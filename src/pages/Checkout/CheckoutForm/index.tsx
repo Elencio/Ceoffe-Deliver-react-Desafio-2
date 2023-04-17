@@ -10,6 +10,7 @@ import {
   Options,
   OptionsCard,
   TotalPrices,
+  Card,
   Price,
 } from './styles'
 import { Minus, Plus, Trash } from 'phosphor-react'
@@ -22,8 +23,7 @@ export function CheckoutForm() {
     addToCart,
     CountNUmbers,
     totalAmount,
-    takeData,
-    formData,
+    removeCart,
     JustToResetTheForm,
   } = useContext(CoffeeContext)
 
@@ -44,23 +44,27 @@ export function CheckoutForm() {
           {cart.map((item) => (
             <>
               <CardOut key={item.product.id}>
-                <img src={item.product.image} alt="" />
-                <Options>
-                  <strong>{item.product.title}</strong>
-                  <OptionsCard>
-                    <AddandKeepOut>
-                      <Minus onClick={() => removeFromCart(item.product)} />
-                      <span>{CountNUmbers(item.product)}</span>
-                      <Plus onClick={() => addToCart(item.product)} />
-                    </AddandKeepOut>
-                    <DeleteCard>
-                      <div>
-                        <Trash />
-                      </div>
-                      <span>Remover</span>
-                    </DeleteCard>
-                  </OptionsCard>
-                </Options>
+                <Card>
+                  <img src={item.product.image} alt="" />
+                  <Options>
+                    <strong>{item.product.title}</strong>
+                    <OptionsCard>
+                      <AddandKeepOut>
+                        <Minus onClick={() => removeFromCart(item.product)} />
+                        <span>{CountNUmbers(item.product)}</span>
+                        <Plus onClick={() => addToCart(item.product)} />
+                      </AddandKeepOut>
+                      <DeleteCard>
+                        <div>
+                          <Trash />
+                        </div>
+                        <span onClick={() => removeCart(item.product.id)}>
+                          Remover
+                        </span>
+                      </DeleteCard>
+                    </OptionsCard>
+                  </Options>
+                </Card>
                 <Price>R$ 9,90</Price>
               </CardOut>
             </>
