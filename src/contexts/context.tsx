@@ -93,6 +93,11 @@ export function ContextProvider({ children }: ContextProviderProps) {
 
   function takeData(data: CoffeeDataClients) {
     setFormData(data)
+  }
+
+  function JustToResetTheForm() {
+    setCart([])
+    setTotalAmount(0)
     reset()
   }
 
@@ -120,6 +125,7 @@ export function ContextProvider({ children }: ContextProviderProps) {
         handleOptionSelect,
         selectedOption,
         setSelectedOption,
+        JustToResetTheForm,
       }}
     >
       {children}

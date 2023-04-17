@@ -1,4 +1,4 @@
-import { TypeElementsOfArray } from '../contexts/context'
+import { TypeElementsOfArray } from '../contexts/interfaces'
 
 export const MenuCoffes: TypeElementsOfArray[] = [
   {
@@ -31,8 +31,7 @@ export const MenuCoffes: TypeElementsOfArray[] = [
   {
     id: 4,
     title: 'Expresso Gelado',
-    type: ['tradicional'],
-    type1: ['gelado'],
+    type: ['tradicional', 'gelado'],
     price: 9.9,
     description: 'Bebida preparada com café expresso e cubos de gelo.',
     image: 'https://i.ibb.co/bK0scLW/cafe-gelado.png',
@@ -41,8 +40,7 @@ export const MenuCoffes: TypeElementsOfArray[] = [
   {
     id: 5,
     title: 'Café com Leite',
-    type: ['tradicional'],
-    type1: ['com leite'],
+    type: ['tradicional', 'com leite'],
     price: 9.9,
     description: 'Meio a meio de expresso tradicional com leite vaporizado.',
     image: 'https://i.ibb.co/10kjkrd/cafe-leite.png',
@@ -51,8 +49,7 @@ export const MenuCoffes: TypeElementsOfArray[] = [
   {
     id: 6,
     title: 'Latte',
-    type: ['tradicional'],
-    type1: ['com leite'],
+    type: ['tradicional', 'com leite'],
     price: 9.9,
     description:
       'Uma dose de café expresso com o dobro de leite e espuma cremosa.',
@@ -62,8 +59,7 @@ export const MenuCoffes: TypeElementsOfArray[] = [
   {
     id: 7,
     title: 'Capuccino',
-    type: ['tradicional'],
-    type1: ['com leite'],
+    type: ['tradicional', 'com leite'],
     price: 9.9,
     description:
       'Bebida com canela feita de doses iguais de café, leite e espuma.',
@@ -73,8 +69,7 @@ export const MenuCoffes: TypeElementsOfArray[] = [
   {
     id: 8,
     title: 'Macchiato',
-    type: ['tradicional'],
-    type1: ['com leite'],
+    type: ['tradicional', 'com leite'],
     price: 9.9,
     description:
       'ECafé expresso misturado com um pouco de leite quente e espuma.',
@@ -84,8 +79,7 @@ export const MenuCoffes: TypeElementsOfArray[] = [
   {
     id: 9,
     title: 'Mocaccino',
-    type: ['tradicional'],
-    type1: ['com leite'],
+    type: ['tradicional', 'com leite'],
     price: 9.9,
     description: 'Café expresso com calda de chocolate, pouco leite e espuma.',
     image: 'https://i.ibb.co/G5ZyWWG/cafe-mocaccino.png',
@@ -94,8 +88,7 @@ export const MenuCoffes: TypeElementsOfArray[] = [
   {
     id: 10,
     title: 'Chocolate Quente',
-    type: ['especial'],
-    type1: ['Gelado'],
+    type: ['especial', 'Gelado'],
     price: 9.9,
     description:
       'Bebida feita com chocolate dissolvido no leite quente e café.',
@@ -105,9 +98,7 @@ export const MenuCoffes: TypeElementsOfArray[] = [
   {
     id: 11,
     title: 'Cubano',
-    type: ['especial'],
-    type1: ['alcóolico'],
-    type2: ['gelado'],
+    type: ['especial', 'alcóolico', 'gelado'],
     price: 9.9,
     description:
       'Drink gelado de café expresso com rum, creme de leite e hortelã.',
@@ -135,8 +126,7 @@ export const MenuCoffes: TypeElementsOfArray[] = [
   {
     id: 14,
     title: 'Irlandês',
-    type: ['especial'],
-    type1: ['alcóolico'],
+    type: ['especial', 'alcóolico'],
     price: 9.9,
     description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly.',
     image: 'https://i.ibb.co/kB4jzJj/cafe-irlandes.png',

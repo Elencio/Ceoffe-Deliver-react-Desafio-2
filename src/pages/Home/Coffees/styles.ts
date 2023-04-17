@@ -14,7 +14,10 @@ export const ContainerMenuHome = styled.div`
 export const CoffeeMenuHome = styled.div`
   margin-top: 3.5rem;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(256px, 100%), max-content)
+  );
   gap: 2rem;
   align-items: center;
   justify-content: center;
@@ -24,7 +27,6 @@ export const CoffeeContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
   padding: 1.5rem 0;
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px 36px;
@@ -44,6 +46,9 @@ export const CoffeeContainer = styled.div`
     background: ${(props) => props.theme['yellow-light']};
     border-radius: 100px;
     display: flex;
+    flex-direction: row;
+    margin-top: 0.75rem;
+    gap: 1rem;
     align-items: center;
     justify-content: center;
   }
@@ -55,11 +60,14 @@ export const CoffeeContainer = styled.div`
     font-size: 20px;
     line-height: 130%;
     text-align: center;
+    margin-top: 1rem;
     color: ${(props) => props.theme['base-subtitle']};
   }
 
   img {
     margin-top: -3.5rem;
+    width: 120px;
+    height: 120px;
   }
 
   p {
@@ -69,8 +77,22 @@ export const CoffeeContainer = styled.div`
     font-size: 14px;
     line-height: 130%;
     text-align: center;
+    margin-top: 0.5rem;
+    margin-bottom: 2.0625rem;
     color: ${(props) => props.theme['base-label']};
     padding: 0 1rem;
+  }
+
+  strong {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+
+    text-align: center;
+
+    color: ${(props) => props.theme['base-title']};
   }
 `
 
@@ -127,4 +149,13 @@ export const DescriptionCoffee = styled.div`
   justify-content: center;
   gap: 0.5rem;
   place-content: center;
+`
+
+export const Containeritems = styled.div`
+  display: flex;
+  width: 12.1875rem;
+  height: 1.3125rem;
+  flex-direction: row;
+  gap: 0.75rem;
+  justify-content: center;
 `

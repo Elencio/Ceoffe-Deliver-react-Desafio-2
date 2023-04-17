@@ -36,8 +36,7 @@ export const ContainerOptionsHome = styled.div`
   margin-top: 2rem;
   display: flex;
   gap: 1rem;
-  align-items: center;
-
+  align-items: flex-start;
   span {
     font-family: 'Roboto';
     font-style: normal;
@@ -50,7 +49,7 @@ export const ContainerOptionsHome = styled.div`
 
 export const Containercard = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   gap: 1rem;

@@ -9,8 +9,6 @@ export interface TypeElementsOfArray {
   image: string
   description: string
   type: string[]
-  type1?: string[]
-  type2?: string[]
   quantity: number
 }
 
@@ -33,6 +31,7 @@ export interface ContextCoffeeType {
   selectedOption: TypeOptionPayment
   setSelectedOption: React.Dispatch<React.SetStateAction<TypeOptionPayment>>
   handleOptionSelect: (option: TypeOptionPayment) => void
+  JustToResetTheForm: () => void
 }
 
 export interface ContextProviderProps {

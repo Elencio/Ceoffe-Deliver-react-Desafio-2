@@ -7,6 +7,7 @@ import {
   CoffeeContainer,
   CoffeeMenuHome,
   ContainerMenuHome,
+  Containeritems,
   ShoppingCoffee,
 } from './styles'
 import { MenuCoffes } from '../../../db/DB'
@@ -23,20 +24,24 @@ export function Coffee() {
           <>
             <CoffeeContainer key={item.id}>
               <img src={item.image} alt="" />
-              <h2>{item.type}</h2>
-              <h2>{item.type1}</h2>
-              <h2>{item.type2}</h2>
+              {item.type && (
+                <Containeritems>
+                  {item.type.map((t) => (
+                    <h2 key={item.id}>{t}</h2>
+                  ))}
+                </Containeritems>
+              )}
               <span>{item.title}</span>
               <p>{item.description}</p>
               <ChooseCoffee>
-                <p>
-                  R$
+                <div>
+                  <strong>R$</strong> {''}
                   <span>{item.price}</span>
-                </p>
+                </div>
                 <ButtonsChooseCoffee>
                   <AddandKeepOutCoffee>
                     <Plus onClick={() => addToCart(item)} />
-                    <span>{CountNUmbers(item)}</span>
+                    <strong>{CountNUmbers(item)}</strong>
                     <Minus onClick={() => removeFromCart(item)} />
                   </AddandKeepOutCoffee>
                   <ShoppingCoffee>
