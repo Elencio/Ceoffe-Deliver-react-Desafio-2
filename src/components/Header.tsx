@@ -1,7 +1,7 @@
 import { HeaderContainer, RounedCoffeeCount } from './styles'
 import logoCoffee from '../assets/logo-coffee.svg'
 import { MapPin, ShoppingCart } from 'phosphor-react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
 import { CoffeeContext } from '../contexts/context'
 

@@ -35,6 +35,7 @@ export function CheckoutForm() {
     deliverAdd = 3.5
   }
 
+  const DisabledButton = !totalAmount
   const totalAmountToPaying = totalAmount + deliverAdd
   return (
     <div>
@@ -86,7 +87,9 @@ export function CheckoutForm() {
           </div>
         </TotalPrices>
         <NavLink to="/Success" onClick={JustToResetTheForm}>
-          <ButtonComponent>Finalizar Pedido</ButtonComponent>
+          <ButtonComponent disabled={DisabledButton}>
+            Finalizar Pedido
+          </ButtonComponent>
         </NavLink>
       </CheckingOutTheOptions>
     </div>
