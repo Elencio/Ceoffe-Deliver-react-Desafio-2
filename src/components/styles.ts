@@ -10,17 +10,6 @@ export const HeaderContainer = styled.header`
     gap: 0.5rem;
   }
 
-  a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    background-color: ${(props) => props.theme['yellow-light']};
-    border-radius: 6px;
-    color: ${(props) => props.theme['yellow-dark']};
-  }
-
   span {
     width: 10rem;
     height: 2.5rem;
@@ -32,11 +21,17 @@ export const HeaderContainer = styled.header`
     border-radius: 6px;
     color: ${(props) => props.theme['purple-dark']};
   }
+
+  a:focus {
+    outline: none;
+    box-shadow: 0 0 0 0;
+  }
 `
 
 export const RounedCoffeeCount = styled.div`
-  top: 1.5rem;
-  left: 79rem;
+  position: relative;
+  margin-top: -2rem;
+  margin-left: 2rem;
   width: 1.25rem;
   height: 1.25rem;
   font-family: 'Roboto';
@@ -50,4 +45,16 @@ export const RounedCoffeeCount = styled.div`
   background-color: ${(props) => props.theme['yellow-dark']};
   position: absolute;
   color: ${(props) => props.theme.white};
+`
+
+export const CartAmount = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: ${(props) => props.theme['yellow-light']};
+  border-radius: 6px;
+  color: ${(props) => props.theme['yellow-dark']};
 `

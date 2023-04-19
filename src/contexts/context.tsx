@@ -17,9 +17,8 @@ export const DataClientValidation = zod.object({
   Rua: zod.string().min(3).max(2000),
 
   numero: zod.number().min(1).max(2000),
-  complemento: zod
-    .string()
-    .min(2, { message: 'Bairro deve ter pelo menos 2 caracteres' }),
+  complemento: zod.optional(zod.string()),
+
   Bairro: zod
     .string()
     .min(2, { message: 'Cidade deve ter pelo menos 2 caracteres' }),
@@ -92,8 +91,9 @@ export function ContextProvider({ children }: ContextProviderProps) {
         updatedCart.splice(index, 1)
       }
       setCart(updatedCart)
-      console.log(updatedCart)
-      setTotalAmount(totalAmount - product.price)
+      const totalPriceLeft = totalAmount - product.price
+      const totalPriceLeftToPay = parseFloat(totalPriceLeft.toFixed(3))
+      setTotalAmount(totalPriceLeftToPay)
     }
   }
 
@@ -106,7 +106,11 @@ export function ContextProvider({ children }: ContextProviderProps) {
         0,
       )
       const updatedCart = cart.filter((item) => item.product.id !== productId)
-      setTotalAmount(totalAmount - removedTotal)
+      const priceWhenRemovedCart = totalAmount - removedTotal
+      const totalPriceWhenRemovedCart = parseFloat(
+        priceWhenRemovedCart.toFixed(3),
+      )
+      setTotalAmount(totalPriceWhenRemovedCart)
       setCart(updatedCart)
     }
   }

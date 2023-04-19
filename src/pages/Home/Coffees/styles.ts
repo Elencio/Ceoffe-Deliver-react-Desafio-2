@@ -118,6 +118,7 @@ export const AddandKeepOutCoffee = styled.div`
   gap: 0.5rem;
   width: 72px;
   height: 38px;
+  cursor: pointer;
   color: ${(props) => props.theme.purple};
   background: ${(props) => props.theme['base-button']};
   border-radius: 6px;

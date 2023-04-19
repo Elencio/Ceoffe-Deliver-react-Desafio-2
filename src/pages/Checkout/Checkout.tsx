@@ -1,6 +1,5 @@
 import { MapPinLine } from 'phosphor-react'
-import { NavLink } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import {
   ContainerCheckout,
   ContainerFormCheckout,
@@ -19,12 +18,19 @@ import {
 import { CoffeeContext } from '../../contexts/context'
 import { PaymentMethods } from './PaymentMethods'
 import { CheckoutForm } from './CheckoutForm'
+import { EmptyCart } from './EmptyCart'
 
 export function Checkout() {
-  const { register, takeData, handleSubmit } = useContext(CoffeeContext)
+  const { register, takeData, handleSubmit, cart } = useContext(CoffeeContext)
+
+  const [isCartEmpty, setIsCartEmpty] = useState(cart.length === 0)
+
+  useEffect(() => {
+    setIsCartEmpty(cart.length === 0)
+  }, [cart])
 
   return (
-    <form onSubmit={handleSubmit(takeData)}>
+    <form onSubmit={handleSubmit(takeData)} id="formData">
       <ContainerCheckout>
         <div>
           <strong>Complete seu pedido</strong>
@@ -67,7 +73,7 @@ export function Checkout() {
                   <Input4
                     type="text"
                     id="neighborhoodInput"
-                    placeholder="Complemento"
+                    placeholder="Complemento Opcional"
                     {...register('complemento')}
                   />
                 </div>
@@ -98,9 +104,7 @@ export function Checkout() {
             <PaymentMethods />
           </ContainerHeaderCartCheckout>
         </div>
-        <div>
-          <CheckoutForm />
-        </div>
+        <div>{isCartEmpty ? <EmptyCart /> : <CheckoutForm />}</div>
       </ContainerCheckout>
     </form>
   )
