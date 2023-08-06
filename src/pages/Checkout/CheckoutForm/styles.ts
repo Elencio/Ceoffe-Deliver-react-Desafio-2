@@ -11,7 +11,7 @@ export const CheckingOutTheOptions = styled.div`
   border-radius: 6px 44px;
 
   @media (max-width: 768px) {
-    padding: 10px;
+    padding: 20px;
     gap: 12px;
   }
 `
@@ -177,7 +177,7 @@ export const ButtonComponent = styled.button`
 
   @media (max-width: 768px) {
     font-size: 14px;
-    max-width: 290px;
+    max-width: 270px;
   }
 `
 export const Price = styled.div`
