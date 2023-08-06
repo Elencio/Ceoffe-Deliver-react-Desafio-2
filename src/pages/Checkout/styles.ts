@@ -23,9 +23,7 @@ export const ContainerCheckout = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    max-width: 400px;
+    padding: 1.5rem;
   }
 `
 
@@ -58,6 +56,15 @@ export const FormContainer = styled.div`
   div {
     display: flex;
     gap: 0.75rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 0.5rem;
+
+    div {
+      flex-direction: column;
+    }
   }
 `
 export const ContainerPaymentCardCheckout = styled(ContainerFormCheckout)``
@@ -109,6 +116,34 @@ export const BaseInput = styled.input`
   background: ${(props) => props.theme['base-input']};
   border: 1px solid ${(props) => props.theme['base-button']};
   border-radius: 4px;
+
+  @media (min-width: 576px) {
+    max-width: 200px;
+  }
+
+  @media (min-width: 768px) {
+    max-width: 560px;
+  }
+
+  @media (min-width: 992px) {
+    max-width: 200px;
+  }
+
+  @media (min-width: 1200px) {
+    max-width: 348px;
+  }
+
+  @media (min-width: 1400px) {
+    max-width: 200px;
+  }
+
+  @media (min-width: 1600px) {
+    max-width: 276px;
+  }
+
+  @media (min-width: 1800px) {
+    max-width: 60px;
+  }
 `
 export const Input1 = styled(BaseInput)`
   width: 200px;
@@ -117,6 +152,10 @@ export const Input1 = styled(BaseInput)`
 export const Input2 = styled(BaseInput)`
   width: 560px;
   height: 42px;
+
+  @media screen and (max-width: 768px) {
+    width: 200px;
+  }
 `
 export const Input3 = styled(BaseInput)`
   width: 200px;
@@ -125,6 +164,10 @@ export const Input3 = styled(BaseInput)`
 export const Input4 = styled(BaseInput)`
   width: 348px;
   height: 42px;
+
+  @media screen and (max-width: 768px) {
+    width: 250px;
+  }
 `
 export const Input5 = styled(BaseInput)`
   width: 200px;
@@ -133,6 +176,10 @@ export const Input5 = styled(BaseInput)`
 export const Input6 = styled(BaseInput)`
   width: 276px;
   height: 42px;
+
+  @media screen and (max-width: 768px) {
+    width: 200px;
+  }
 `
 export const Input7 = styled(BaseInput)`
   width: 60px;

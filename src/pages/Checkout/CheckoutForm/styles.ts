@@ -11,7 +11,7 @@ export const CheckingOutTheOptions = styled.div`
   border-radius: 6px 44px;
 
   @media (max-width: 768px) {
-    padding: 20px;
+    padding: 10px;
     gap: 12px;
   }
 `
@@ -19,7 +19,6 @@ export const CardCheckingOut = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
 `
 
 export const CardOut = styled.div`
@@ -33,6 +32,15 @@ export const CardOut = styled.div`
 
   padding-bottom: 3rem;
   border-bottom: 1px solid ${(props) => props.theme['base-button']};
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    margin-bottom: 1rem;
+    padding-bottom: 7rem;
+    width: auto;
+    gap: 0.5rem;
+    align-items: center;
+  }
 `
 export const Card = styled.div`
   display: flex;
@@ -40,6 +48,10 @@ export const Card = styled.div`
   align-items: center;
   width: 255px;
   height: 64px;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+  }
 `
 
 export const AddandKeepOut = styled.div`
@@ -142,8 +154,6 @@ export const TotalPrices = styled.div`
   }
 `
 export const ButtonComponent = styled.button`
-  width: 100%;
-  padding: 12px 8px;
   width: 368px;
   height: 46px;
   background: ${(props) => props.theme.yellow};
@@ -164,6 +174,11 @@ export const ButtonComponent = styled.button`
   &:hover {
     background: ${(props) => props.theme['yellow-dark']};
   }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    max-width: 290px;
+  }
 `
 export const Price = styled.div`
   font-family: 'Roboto';
@@ -174,4 +189,8 @@ export const Price = styled.div`
   display: flex;
   margin-top: -2rem;
   color: ${(props) => props.theme['base-text']};
+
+  @media (max-width: 768px) {
+    margin-top: 0;
+  }
 `

@@ -5,6 +5,7 @@ export const ContainerSuccessPayment = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
+  padding: 1rem;
 `
 export const ContentHeader = styled.div`
   display: flex;
@@ -34,6 +35,10 @@ export const ContentHeader = styled.div`
 export const InformationContainer = styled.div`
   display: flex;
   gap: 6.375rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 export const InfoDetails = styled.div`
   display: flex;
@@ -44,6 +49,11 @@ export const InfoDetails = styled.div`
   border: 1px solid #dcf;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 6px 36px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 2rem;
+  }
 `
 export const InfoDetailsTitle = styled.div`
   display: flex;
