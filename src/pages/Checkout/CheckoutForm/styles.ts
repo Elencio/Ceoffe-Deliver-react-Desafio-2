@@ -9,6 +9,11 @@ export const CheckingOutTheOptions = styled.div`
   gap: 24px;
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px 44px;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    gap: 12px;
+  }
 `
 export const CardCheckingOut = styled.div`
   display: flex;

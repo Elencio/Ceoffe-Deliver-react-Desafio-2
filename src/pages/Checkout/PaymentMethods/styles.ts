@@ -4,6 +4,11 @@ export const ButtonOptions = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.75rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 2rem;
+  }
 `
 export const BaseOptions = styled.button`
   display: flex;
@@ -31,6 +36,10 @@ export const BaseOptions = styled.button`
     line-height: 160%;
     text-transform: uppercase;
     color: ${(props) => props.theme['base-text']};
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `
 export const ButtonCreditCard = styled(BaseOptions)``
@@ -68,6 +77,10 @@ export const ContainerFormCheckout = styled.div`
       gap: 0.75rem;
     }
   }
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `
 export const ContainerPaymentCardCheckout = styled(ContainerFormCheckout)``
 
@@ -95,6 +108,11 @@ export const DetailContainerOfPaymentAndLocation = styled.div`
     display: flex;
     align-items: center;
     color: ${(props) => props.theme['base-text']};
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
   }
 `
 

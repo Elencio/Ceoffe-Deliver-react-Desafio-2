@@ -26,6 +26,20 @@ export const HeaderContainer = styled.header`
     outline: none;
     box-shadow: 0 0 0 0;
   }
+
+  @media (max-width: 768px) {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 0 1.2rem;
+    nav {
+      align-items: center;
+
+      span {
+        display: none;
+      }
+    }
+  }
 `
 
 export const RounedCoffeeCount = styled.div`
@@ -57,4 +71,8 @@ export const CartAmount = styled.div`
   background-color: ${(props) => props.theme['yellow-light']};
   border-radius: 6px;
   color: ${(props) => props.theme['yellow-dark']};
+
+  @media (max-width: 768px) {
+    position: static;
+  }
 `

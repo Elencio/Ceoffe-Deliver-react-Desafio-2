@@ -5,6 +5,12 @@ export const HeaderContainerHome = styled.div`
   display: flex;
   gap: 5rem;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    padding: 2.5rem 0;
+    gap: 3rem;
+  }
 `
 
 export const HeaderContentHome = styled.div`
@@ -31,6 +37,15 @@ export const HeaderContentHome = styled.div`
     color: ${(props) => props.theme['base-subtitle']};
     font-stretch: 100;
   }
+
+  @media screen and (max-width: 768px) {
+    strong {
+      font-size: 25px;
+    }
+    span {
+      font-size: 18px;
+    }
+  }
 `
 export const ContainerOptionsHome = styled.div`
   margin-top: 2rem;
@@ -44,6 +59,13 @@ export const ContainerOptionsHome = styled.div`
     font-size: 16px;
     line-height: 130%;
     color: ${(props) => props.theme['base-text']};
+  }
+
+  @media screen and (max-width: 768px) {
+    /* Styles for screens with a maximum width of 768px or less */
+    /* For example, you can change the flex-direction to column for smaller screens */
+    flex-direction: column;
+    gap: 1rem;
   }
 `
 

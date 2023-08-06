@@ -20,6 +20,13 @@ export const ContainerCheckout = styled.div`
     align-items: center;
     color: ${(props) => props.theme['base-subtitle']};
   }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    max-width: 400px;
+  }
 `
 
 export const ContainerHeaderCartCheckout = styled.div`

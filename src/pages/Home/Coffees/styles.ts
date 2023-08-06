@@ -9,6 +9,14 @@ export const ContainerMenuHome = styled.div`
     line-height: 130%;
     color: ${(props) => props.theme['base-subtitle']};
   }
+
+  @media screen and (max-width: 768px) {
+    /* Styles for screens with a maximum width of 768px or less */
+    /* For example, you can adjust the font-size for smaller screens */
+    strong {
+      font-size: 24px;
+    }
+  }
 `
 
 export const CoffeeMenuHome = styled.div`
@@ -21,6 +29,12 @@ export const CoffeeMenuHome = styled.div`
   gap: 2rem;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 768px) {
+    /* Styles for screens with a maximum width of 768px or less */
+    /* For example, you can change the grid-template-columns to a single column layout */
+    grid-template-columns: repeat(1, minmax(min(256px, 100%), max-content));
+  }
 `
 export const CoffeeContainer = styled.div`
   display: flex;
